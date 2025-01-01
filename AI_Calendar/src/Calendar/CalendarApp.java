@@ -18,7 +18,7 @@ public class CalendarApp {
 	private void validateDateTime(int year, int month, int day, int firstTime, int secondTime) throws InvalidDateException, InvalidTimeException{
 		try {
 	        LocalDate.of(year, month, day); // Validate the date
-	        if (firstTime >= 2400 || firstTime <= 0 || secondTime >= 2400 || secondTime <= 0) {
+	        if (firstTime > 2400 || firstTime < 0 || secondTime > 2400 || secondTime < 0) {
 	        	throw new InvalidTimeException("Not a Valid Time: ");	
 	        }
 	    } catch (DateTimeException e) {
@@ -52,5 +52,15 @@ public class CalendarApp {
 
 	public void deleteCalendarItem(String eventName) {
 		listOfEvents.remove(eventName);
+	}
+	
+	public void displayCalendar() {
+		for (CalendarItem event : listOfEvents.values()) {
+		    System.out.println(event.getEventName());
+		    System.out.println(event.getYear());
+		    System.out.println(event.getMonth());
+		    System.out.println(event.getDay());
+		    System.out.println();
+		}
 	}
 }
